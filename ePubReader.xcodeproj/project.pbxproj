@@ -71,7 +71,7 @@
 		FD91B58C1A91E42900AF8666 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = ePubReader/Model/Item.m; sourceTree = "<group>"; };
 		FD91B58E1A91E45700AF8666 /* ItemRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemRef.h; path = ePubReader/Model/ItemRef.h; sourceTree = "<group>"; };
 		FD91B58F1A91E45700AF8666 /* ItemRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemRef.m; path = ePubReader/Model/ItemRef.m; sourceTree = "<group>"; };
-		FD91B5921A91E4C200AF8666 /* Geography_9.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geography_9.epub; sourceTree = "<group>"; };
+		FD91B5921A91E4C200AF8666 /* Geography_9.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geography_9.epub; path = ../../Geography_9.epub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -528,6 +528,7 @@
 				FD91B56D1A91E28E00AF8666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FD91B56E1A91E28E00AF8666 /* Build configuration list for PBXNativeTarget "ePubReaderTests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +537,7 @@
 				FD91B5701A91E28E00AF8666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

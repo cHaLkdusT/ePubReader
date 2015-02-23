@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TBXML.h"
 
 @interface Item : NSObject
 
@@ -15,6 +16,6 @@
 @property (nonatomic, strong) NSString *mediaType;
 @property (nonatomic, strong) NSString *properties;
 
-- (instancetype)initWithInfo:(NSString *)href ID:(NSString *)ID mediaType:(NSString *)mediaType properties:(NSString *)properties;
+- (instancetype)initWithTBXMLElement:(TBXMLElement *)element;
 
 @end

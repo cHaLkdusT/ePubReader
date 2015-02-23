@@ -10,14 +10,14 @@
 
 @implementation Item
 
-- (instancetype)initWithInfo:(NSString *)href ID:(NSString *)ID mediaType:(NSString *)mediaType properties:(NSString *)properties
+- (instancetype)initWithTBXMLElement:(TBXMLElement *)element
 {
     self = [super init];
     if (self) {
-        self.href = href;
-        self.ID = ID;
-        self.mediaType = mediaType;
-        self.properties = properties;
+        self.ID = [TBXML valueOfAttributeNamed:@"id" forElement:element];
+        self.href = [TBXML valueOfAttributeNamed:@"href" forElement:element];
+        self.mediaType = [TBXML valueOfAttributeNamed:@"media-type" forElement:element];
+        self.properties = [TBXML valueOfAttributeNamed:@"properties" forElement:element];
     }
     return self;
 }

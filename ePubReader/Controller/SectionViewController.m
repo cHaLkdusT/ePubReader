@@ -16,9 +16,8 @@
 #import "ItemRef.h"
 
 @interface SectionViewController ()
-
-@property NSMutableArray *sections;
-
+@property NSMutableArray *arrItemRefs;
+@property NSMutableDictionary *items;
 @end
 
 @implementation SectionViewController
@@ -34,6 +33,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    _arrItemRefs = [NSMutableArray array];
+    _items = [NSMutableDictionary dictionary];
+    
     self.detailViewController = (PageViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
     
     NSString *containerXMLPath = [NSString stringWithFormat:@"%@/UnzippedGeography_9/META-INF/container.xml", [AppDelegate applicationDocumentsDirectory]];
@@ -45,6 +48,7 @@
         TBXMLElement *rootXMLElement = containterTBXML.rootXMLElement;
         TBXMLElement *rootFilesXML = [TBXML childElementNamed:@"rootfiles" parentElement:rootXMLElement];
         TBXMLElement *rootfileXML = [TBXML childElementNamed:@"rootfile" parentElement:rootFilesXML];
+        
         NSString *contentXML = [TBXML valueOfAttributeNamed:@"full-path" forElement:rootfileXML];
         if (contentXML) {
             NSString *opfXMLPath = [NSString stringWithFormat:@"%@/UnzippedGeography_9/OEBPS/content.opf", [AppDelegate applicationDocumentsDirectory]];
@@ -72,12 +76,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.sections[indexPath.row];
         PageViewController *controller = (PageViewController *)[[segue destinationViewController] topViewController];
-        [controller setDetailItem:object];
+        
+        controller.items = _items;
+        controller.arrItemRefs = _arrItemRefs;
+        controller.tableViewCellRow = [self.tableView indexPathForSelectedRow].row;
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         controller.navigationItem.leftItemsSupplementBackButton = YES;
+        
+        // Hide MasterView once user have selected a cell
+        UIBarButtonItem *barButtonItem = [self.splitViewController displayModeButtonItem];
+        [[UIApplication sharedApplication] sendAction:barButtonItem.action to:barButtonItem.target from:nil forEvent:nil];
     }
 }
 
@@ -88,14 +97,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.sections.count;
+    return self.arrItemRefs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = self.sections[indexPath.row];
-    cell.textLabel.text = [object description];
+    ItemRef *itemRef = self.arrItemRefs[indexPath.row];
+    cell.textLabel.text = itemRef.idRef;
     return cell;
 }
 
@@ -105,14 +113,16 @@
  */
 - (void)traverseElement:(TBXMLElement *)element {
     do {
-        // Display the name of the element
-        NSLog(@"%@",[TBXML elementName:element]);
-        NSString *elementStr = (NSString *) [TBXML elementName:element];
+        NSLog(@"%@",[TBXML elementName:element]); // Display the name of the element
         
+        NSString *elementStr = (NSString *) [TBXML elementName:element];
         if ([elementStr isEqualToString:@"item"]) {
+            Item *item = [[Item alloc] initWithTBXMLElement:element];
+            [_items setObject:item forKey:item.ID];
             
         } else if ([elementStr isEqualToString:@"itemref"]){
-            
+            ItemRef *itemRef = [[ItemRef alloc] initWithTBXMLElement:element];
+            [_arrItemRefs addObject:itemRef];
         }
         
         /*
