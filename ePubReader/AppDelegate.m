@@ -23,6 +23,7 @@
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     navigationController.topViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem;
     splitViewController.delegate = self;
+    splitViewController.preferredDisplayMode = UISplitViewControllerDisplayModePrimaryHidden;
     
 //    [AppDelegate unzipAndSaveFile:@"Geography_9"];
     return YES;
@@ -53,13 +54,14 @@
 #pragma mark - Split view
 
 - (BOOL)splitViewController:(UISplitViewController *)splitViewController collapseSecondaryViewController:(UIViewController *)secondaryViewController ontoPrimaryViewController:(UIViewController *)primaryViewController {
-    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[PageViewController class]] && ([(PageViewController *)[(UINavigationController *)secondaryViewController topViewController] detailItem] == nil)) {
+    if ([secondaryViewController isKindOfClass:[UINavigationController class]] && [[(UINavigationController *)secondaryViewController topViewController] isKindOfClass:[PageViewController class]]) {
         // Return YES to indicate that we have handled the collapse by doing nothing; the secondary controller will be discarded.
         return YES;
     } else {
         return NO;
     }
 }
+
 
 /**
  Unzip epub and save to application's document directory
@@ -68,32 +70,45 @@
  */
 + (void)unzipAndSaveFile:(NSString *)epubName
 {
-    ZipArchive* za = [[ZipArchive alloc] init];
-    if( [za UnzipOpenFile:[[NSBundle mainBundle] pathForResource:epubName ofType:@"epub"]] ){
-        
+    ZipArchive* zipArchive = [[ZipArchive alloc] init];
+    if([zipArchive UnzipOpenFile:[[NSBundle mainBundle] pathForResource:epubName ofType:@"epub"]]){
         NSString *strPath = [NSString stringWithFormat:@"%@/UnzippedGeography_9", [self applicationDocumentsDirectory]];
-        //Delete all the previous files
-        NSFileManager *filemanager = [[NSFileManager alloc] init];
-        if ([filemanager fileExistsAtPath:strPath]) {
-            NSError *error;
-            [filemanager removeItemAtPath:strPath error:&error];
-        }
-        filemanager = nil;
-        //start unzip
-        BOOL ret = [za UnzipFileTo:[NSString stringWithFormat:@"%@/",strPath] overWrite:YES];
-        if( NO == ret ) {
-            // error handler here
-            UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Error"
-                                                          message:@"An unknown error occured"
-                                                         delegate:self
-                                                cancelButtonTitle:@"OK"
-                                                otherButtonTitles:nil];
-            [alert show];
-            alert = nil;
-        }
-        [za UnzipCloseFile];
+        
+        [self deletePreviousFiles:strPath];
+        [self unzip:zipArchive path:strPath];
+        
+        [zipArchive UnzipCloseFile];
     }
 }
+
++ (void)deletePreviousFiles:(NSString *)path
+{
+    NSFileManager *filemanager = [[NSFileManager alloc] init];
+    if ([filemanager fileExistsAtPath:path]) {
+        NSError *error;
+        
+        [filemanager removeItemAtPath:path error:&error];
+        if (error) {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }
+    filemanager = nil;
+}
+
++ (void)unzip:(ZipArchive *)zipArchive path:(NSString *)path
+{
+    if ([zipArchive UnzipFileTo:[NSString stringWithFormat:@"%@/",path] overWrite:YES]) {
+        // error handler here
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"An unknown error occured"
+                                                     delegate:self
+                                            cancelButtonTitle:@"OK"
+                                            otherButtonTitles:nil];
+        [alert show];
+        alert = nil;
+    }
+}
+
 
 /**
  To find the path path to documents directory
@@ -101,10 +116,9 @@
  @returns NSString - Returns the path to documents directory
  @exception nil
  */
-+ (NSString *)applicationDocumentsDirectory {
-    
++ (NSString *)applicationDocumentsDirectory
+{
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
-    return basePath;
+    return ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
 }
 @end

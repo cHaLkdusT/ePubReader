@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Item.h"
 
 @interface PageViewController : UIViewController
-
-@property (strong, nonatomic) id detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
-
+@property (nonatomic) NSInteger tableViewCellRow;
+@property (strong, nonatomic) NSMutableArray *arrItemRefs;
+@property (strong, nonatomic) NSMutableDictionary *items;
 @end
 

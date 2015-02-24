@@ -10,12 +10,11 @@
 
 @implementation ItemRef
 
-- (instancetype)initWithInfo:(NSString *)idref
+- (instancetype)initWithTBXMLElement:(TBXMLElement *)element
 {
     self = [super init];
-    if (self)
-    {
-        self.idref = idref;
+    if (self) {
+        self.idRef = [TBXML valueOfAttributeNamed:@"idref" forElement:element];
     }
     return self;
 }

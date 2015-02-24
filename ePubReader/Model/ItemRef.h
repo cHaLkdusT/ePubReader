@@ -7,11 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "TBXML.h"
 
 @interface ItemRef : NSObject
 
-@property (nonatomic, strong) NSString *idref;
+@property (nonatomic, strong) NSString *idRef;
 
-- (instancetype)initWithInfo:(NSString *)idref;
+- (instancetype)initWithTBXMLElement:(TBXMLElement *)element;
 
 @end
