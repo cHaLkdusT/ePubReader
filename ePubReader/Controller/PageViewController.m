@@ -6,11 +6,9 @@
 //  Copyright (c) 2015 Cambridge University Press. All rights reserved.
 //
 
-#import "SectionViewController.h"
 #import "PageViewController.h"
 #import "AppDelegate.h"
-#import "ItemRef.h"
-#import "Item.h"
+#import "Section.h"
 
 @interface PageViewController () <UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -27,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSInteger pageCount = _arrItemRefs.count;
+    NSInteger pageCount = _arrSections.count;
     
     // Removed PageControl for now from StoryBoard
     _pageControl.currentPage = _tableViewCellRow;
@@ -55,7 +53,7 @@
 - (void)initializeScrollView
 {
     CGSize pagesScrollViewSize = _scrollView.frame.size;
-    _scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * _arrItemRefs.count, pagesScrollViewSize.height);
+    _scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * _arrSections.count, pagesScrollViewSize.height);
     _scrollView.contentOffset = [self offsetForPageAtIndex:_tableViewCellRow];
     _scrollView.delegate = self;
 }
@@ -83,13 +81,13 @@
     }
     
     // Purge anything after the last page
-    for (NSInteger i = lastPage+1; i < _arrItemRefs.count; i++) {
+    for (NSInteger i = lastPage+1; i < _arrSections.count; i++) {
         [self purgePage:i];
     }
 }
 
 - (void)purgePage:(NSInteger)page {
-    if (page < 0 || page >= _arrItemRefs.count) {
+    if (page < 0 || page >= _arrSections.count) {
         // If it's outside the range of what you have to display, then do nothing
         return;
     }
@@ -103,7 +101,7 @@
 }
 
 - (void)loadPage:(NSInteger)page {
-    if (page < 0 || page >= _arrItemRefs.count) {
+    if (page < 0 || page >= _arrSections.count) {
         // If it's outside the range of what you have to display, then do nothing
         return;
     }
@@ -114,9 +112,7 @@
         frame.origin.x = frame.size.width * page;
         frame.origin.y = 0.0f;
         
-        Item *item = _items[[_arrItemRefs[page] idRef]];
-        NSString *path = [NSString stringWithFormat:@"%@/UnzippedGeography_9/OEBPS/%@", [AppDelegate applicationDocumentsDirectory], item.href];
-        
+        NSString *path = [NSString stringWithFormat:@"%@/UnzippedGeography_9/OEBPS/%@", [AppDelegate applicationDocumentsDirectory], [self fileToLoad:page]];
         UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
         [_scrollView addSubview:webView];
@@ -127,14 +123,40 @@
 
 - (CGPoint)offsetForPageAtIndex:(NSInteger)index {
     CGPoint offset;
-    offset.x = (self.scrollView.frame.size.width * index);
+    offset.x = (_scrollView.frame.size.width * index);
     offset.y = 0;
     return offset;
 }
+
+- (NSString *)fileToLoad:(NSInteger)page
+{
+    Section *section = _arrSections[page];
+    NSString *file;
+    
+    NSRange range = [section.src rangeOfString:@"#"];
+    if (range.location != NSNotFound) {
+        file = [section.src substringWithRange:NSMakeRange(0, range.location)];
+    } else {
+        file = section.src;
+    }
+    return file;
+}
+
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self loadVisiblePages];
 }
 
+#pragma mark - IBActions
+
+- (IBAction)prevButton:(id)sender {
+    [self loadVisiblePages];
+    [_scrollView setContentOffset:[self offsetForPageAtIndex:_tableViewCellRow -= 1] animated:YES];
+}
+
+- (IBAction)nextButton:(id)sender {
+    [self loadVisiblePages];
+    [_scrollView setContentOffset:[self offsetForPageAtIndex:_tableViewCellRow += 1] animated:YES];
+}
 @end

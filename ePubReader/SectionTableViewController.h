@@ -1,8 +1,8 @@
 //
-//  MasterViewController.h
+//  SectionTableViewController.h
 //  ePubReader
 //
-//  Created by Julius Lundang on 2/16/15.
+//  Created by Mark Oliver Baltazar on 2/24/15.
 //  Copyright (c) 2015 Cambridge University Press. All rights reserved.
 //
 
@@ -10,9 +10,6 @@
 
 @class PageViewController;
 
-@interface SectionViewController : UITableViewController
-
+@interface SectionTableViewController : UITableViewController
 @property (strong, nonatomic) PageViewController *detailViewController;
-
 @end
-

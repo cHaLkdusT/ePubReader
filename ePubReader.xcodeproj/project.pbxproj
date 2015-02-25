@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF49A10A1A9C20030070CF12 /* SectionTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49A1091A9C20030070CF12 /* SectionTableViewController.m */; };
+		CF49A10D1A9C20BF0070CF12 /* SectionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49A10C1A9C20BF0070CF12 /* SectionTableViewCell.m */; };
+		CF49A1111A9C21390070CF12 /* SectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49A1101A9C21390070CF12 /* SectionItem.m */; };
+		CF49A1151A9C27400070CF12 /* Section.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49A1141A9C27400070CF12 /* Section.m */; };
+		CF49A1191A9C3B5E0070CF12 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = CF49A1181A9C3B5E0070CF12 /* GDataXMLNode.m */; };
 		FD91B54B1A91E28E00AF8666 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FD91B54A1A91E28E00AF8666 /* main.m */; };
 		FD91B54E1A91E28E00AF8666 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FD91B54D1A91E28E00AF8666 /* AppDelegate.m */; };
-		FD91B5511A91E28E00AF8666 /* SectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD91B5501A91E28E00AF8666 /* SectionViewController.m */; };
 		FD91B5541A91E28E00AF8666 /* PageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD91B5531A91E28E00AF8666 /* PageViewController.m */; };
 		FD91B5571A91E28E00AF8666 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FD91B5551A91E28E00AF8666 /* Main.storyboard */; };
 		FD91B5591A91E28E00AF8666 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FD91B5581A91E28E00AF8666 /* Images.xcassets */; };
@@ -22,8 +26,6 @@
 		FD91B5861A91E3D600AF8666 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = FD91B57F1A91E3D600AF8666 /* zip.c */; };
 		FD91B5871A91E3D600AF8666 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = FD91B5821A91E3D600AF8666 /* ZipArchive.mm */; };
 		FD91B5891A91E3E200AF8666 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FD91B5881A91E3E200AF8666 /* libz.1.2.5.dylib */; };
-		FD91B58D1A91E42900AF8666 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = FD91B58C1A91E42900AF8666 /* Item.m */; };
-		FD91B5901A91E45700AF8666 /* ItemRef.m in Sources */ = {isa = PBXBuildFile; fileRef = FD91B58F1A91E45700AF8666 /* ItemRef.m */; };
 		FD91B5931A91E7D500AF8666 /* Geography_9.epub in Resources */ = {isa = PBXBuildFile; fileRef = FD91B5921A91E4C200AF8666 /* Geography_9.epub */; };
 /* End PBXBuildFile section */
 
@@ -38,13 +40,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CF49A1081A9C20030070CF12 /* SectionTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionTableViewController.h; sourceTree = "<group>"; };
+		CF49A1091A9C20030070CF12 /* SectionTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionTableViewController.m; sourceTree = "<group>"; };
+		CF49A10B1A9C20BF0070CF12 /* SectionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionTableViewCell.h; sourceTree = "<group>"; };
+		CF49A10C1A9C20BF0070CF12 /* SectionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionTableViewCell.m; sourceTree = "<group>"; };
+		CF49A10F1A9C21390070CF12 /* SectionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionItem.h; sourceTree = "<group>"; };
+		CF49A1101A9C21390070CF12 /* SectionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionItem.m; sourceTree = "<group>"; };
+		CF49A1131A9C27400070CF12 /* Section.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Section.h; sourceTree = "<group>"; };
+		CF49A1141A9C27400070CF12 /* Section.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Section.m; sourceTree = "<group>"; };
+		CF49A1171A9C3B5E0070CF12 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
+		CF49A1181A9C3B5E0070CF12 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		FD91B5451A91E28E00AF8666 /* ePubReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ePubReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD91B5491A91E28E00AF8666 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FD91B54A1A91E28E00AF8666 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		FD91B54C1A91E28E00AF8666 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FD91B54D1A91E28E00AF8666 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FD91B54F1A91E28E00AF8666 /* SectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SectionViewController.h; path = Controller/SectionViewController.h; sourceTree = "<group>"; };
-		FD91B5501A91E28E00AF8666 /* SectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = SectionViewController.m; path = Controller/SectionViewController.m; sourceTree = "<group>"; };
 		FD91B5521A91E28E00AF8666 /* PageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PageViewController.h; path = Controller/PageViewController.h; sourceTree = "<group>"; };
 		FD91B5531A91E28E00AF8666 /* PageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = PageViewController.m; path = Controller/PageViewController.m; sourceTree = "<group>"; };
 		FD91B5561A91E28E00AF8666 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -67,10 +77,6 @@
 		FD91B5811A91E3D600AF8666 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipArchive.h; path = ePubReader/Framework/ZipArchive/ZipArchive.h; sourceTree = "<group>"; };
 		FD91B5821A91E3D600AF8666 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ZipArchive.mm; path = ePubReader/Framework/ZipArchive/ZipArchive.mm; sourceTree = "<group>"; };
 		FD91B5881A91E3E200AF8666 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		FD91B58B1A91E42900AF8666 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Item.h; path = ePubReader/Model/Item.h; sourceTree = "<group>"; };
-		FD91B58C1A91E42900AF8666 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Item.m; path = ePubReader/Model/Item.m; sourceTree = "<group>"; };
-		FD91B58E1A91E45700AF8666 /* ItemRef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemRef.h; path = ePubReader/Model/ItemRef.h; sourceTree = "<group>"; };
-		FD91B58F1A91E45700AF8666 /* ItemRef.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemRef.m; path = ePubReader/Model/ItemRef.m; sourceTree = "<group>"; };
 		FD91B5921A91E4C200AF8666 /* Geography_9.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geography_9.epub; path = ../../Geography_9.epub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -93,6 +99,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CF49A10E1A9C20C60070CF12 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CF49A10B1A9C20BF0070CF12 /* SectionTableViewCell.h */,
+				CF49A10C1A9C20BF0070CF12 /* SectionTableViewCell.m */,
+				CF49A1121A9C21530070CF12 /* Object */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		CF49A1121A9C21530070CF12 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				CF49A10F1A9C21390070CF12 /* SectionItem.h */,
+				CF49A1101A9C21390070CF12 /* SectionItem.m */,
+			);
+			name = Object;
+			sourceTree = "<group>";
+		};
+		CF49A1161A9C3B390070CF12 /* GDataXML */ = {
+			isa = PBXGroup;
+			children = (
+				CF49A1171A9C3B5E0070CF12 /* GDataXMLNode.h */,
+				CF49A1181A9C3B5E0070CF12 /* GDataXMLNode.m */,
+			);
+			name = GDataXML;
+			sourceTree = "<group>";
+		};
 		FD91B53C1A91E28E00AF8666 = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +152,7 @@
 			children = (
 				FD91B5551A91E28E00AF8666 /* Main.storyboard */,
 				FD91B5911A91E45C00AF8666 /* Controller */,
+				CF49A10E1A9C20C60070CF12 /* View */,
 				FD91B58A1A91E40800AF8666 /* Model */,
 				FD91B5481A91E28E00AF8666 /* Supporting Files */,
 			);
@@ -158,6 +193,7 @@
 		FD91B5711A91E32400AF8666 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				CF49A1161A9C3B390070CF12 /* GDataXML */,
 				FD91B5761A91E39600AF8666 /* ZipArchive */,
 				FD91B5751A91E36700AF8666 /* TBXML */,
 			);
@@ -203,10 +239,8 @@
 		FD91B58A1A91E40800AF8666 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FD91B58B1A91E42900AF8666 /* Item.h */,
-				FD91B58C1A91E42900AF8666 /* Item.m */,
-				FD91B58E1A91E45700AF8666 /* ItemRef.h */,
-				FD91B58F1A91E45700AF8666 /* ItemRef.m */,
+				CF49A1131A9C27400070CF12 /* Section.h */,
+				CF49A1141A9C27400070CF12 /* Section.m */,
 			);
 			name = Model;
 			path = ..;
@@ -215,10 +249,10 @@
 		FD91B5911A91E45C00AF8666 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FD91B54F1A91E28E00AF8666 /* SectionViewController.h */,
-				FD91B5501A91E28E00AF8666 /* SectionViewController.m */,
 				FD91B5521A91E28E00AF8666 /* PageViewController.h */,
 				FD91B5531A91E28E00AF8666 /* PageViewController.m */,
+				CF49A1081A9C20030070CF12 /* SectionTableViewController.h */,
+				CF49A1091A9C20030070CF12 /* SectionTableViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -324,16 +358,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FD91B5901A91E45700AF8666 /* ItemRef.m in Sources */,
+				CF49A10D1A9C20BF0070CF12 /* SectionTableViewCell.m in Sources */,
 				FD91B5831A91E3D600AF8666 /* ioapi.c in Sources */,
 				FD91B54E1A91E28E00AF8666 /* AppDelegate.m in Sources */,
-				FD91B5511A91E28E00AF8666 /* SectionViewController.m in Sources */,
 				FD91B5861A91E3D600AF8666 /* zip.c in Sources */,
 				FD91B5871A91E3D600AF8666 /* ZipArchive.mm in Sources */,
+				CF49A10A1A9C20030070CF12 /* SectionTableViewController.m in Sources */,
 				FD91B54B1A91E28E00AF8666 /* main.m in Sources */,
+				CF49A1151A9C27400070CF12 /* Section.m in Sources */,
 				FD91B5841A91E3D600AF8666 /* mztools.c in Sources */,
-				FD91B58D1A91E42900AF8666 /* Item.m in Sources */,
+				CF49A1191A9C3B5E0070CF12 /* GDataXMLNode.m in Sources */,
 				FD91B5741A91E35300AF8666 /* TBXML.m in Sources */,
+				CF49A1111A9C21390070CF12 /* SectionItem.m in Sources */,
 				FD91B5851A91E3D600AF8666 /* unzip.c in Sources */,
 				FD91B5541A91E28E00AF8666 /* PageViewController.m in Sources */,
 			);
@@ -411,9 +447,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -447,8 +489,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-lxml2";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -487,8 +535,19 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = ePubReaderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-lxml2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ePubReader.app/ePubReader";
 			};
@@ -502,8 +561,19 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = ePubReaderTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					XCTest,
+					"-lxml2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ePubReader.app/ePubReader";
 			};
