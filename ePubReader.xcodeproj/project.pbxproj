@@ -77,7 +77,7 @@
 		FD91B5811A91E3D600AF8666 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZipArchive.h; path = ePubReader/Framework/ZipArchive/ZipArchive.h; sourceTree = "<group>"; };
 		FD91B5821A91E3D600AF8666 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = ZipArchive.mm; path = ePubReader/Framework/ZipArchive/ZipArchive.mm; sourceTree = "<group>"; };
 		FD91B5881A91E3E200AF8666 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
-		FD91B5921A91E4C200AF8666 /* Geography_9.epub */ = {isa = PBXFileReference; lastKnownFileType = file; name = Geography_9.epub; path = ../../Geography_9.epub; sourceTree = "<group>"; };
+		FD91B5921A91E4C200AF8666 /* Geography_9.epub */ = {isa = PBXFileReference; lastKnownFileType = file; path = Geography_9.epub; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

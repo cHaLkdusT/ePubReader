@@ -114,6 +114,7 @@
         
         NSString *path = [NSString stringWithFormat:@"%@/UnzippedGeography_9/OEBPS/%@", [AppDelegate applicationDocumentsDirectory], [self fileToLoad:page]];
         UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
+        webView.scalesPageToFit = YES;
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
         [_scrollView addSubview:webView];
 
