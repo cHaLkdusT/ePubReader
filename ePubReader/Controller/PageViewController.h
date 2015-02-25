@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Item.h"
 
 @interface PageViewController : UIViewController
 @property (nonatomic) NSInteger tableViewCellRow;
-@property (strong, nonatomic) NSMutableArray *arrItemRefs;
-@property (strong, nonatomic) NSMutableDictionary *items;
+@property (nonatomic, strong) NSArray *arrSections;
+
+#pragma mark - IBActions
+- (IBAction)prevButton:(id)sender;
+- (IBAction)nextButton:(id)sender;
 @end
 
