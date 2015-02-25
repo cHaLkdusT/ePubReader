@@ -297,9 +297,11 @@
 
 - (NSString *)getPath:(Section *)currentSection currentSectionItem:(SectionItem *)currentSectionItem parentPath:(NSString *)parentPath
 {
-    NSString *path = [NSString stringWithFormat:@"/%@", currentSectionItem.base];
-    for (int i = 1; i < currentSection.level; i++) {
+    NSString *path;
+    if (currentSection.level > 1) {
         path = [NSString stringWithFormat:@"%@/%@", parentPath, currentSectionItem.base];
+    } else {
+        path = [NSString stringWithFormat:@"/%@", currentSectionItem.base];
     }
     return path;
 }
