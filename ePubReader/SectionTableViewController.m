@@ -114,7 +114,6 @@
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         PageViewController *controller = (PageViewController *)[[segue destinationViewController] topViewController];
 
-        NSLog(@"%li", [self.tableView indexPathForSelectedRow].row);
         controller.arrSections = _arrSectionContainer;
         controller.tableViewCellRow = [self.tableView indexPathForSelectedRow].row;
         controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
@@ -222,7 +221,6 @@
         self.dicPathContainers = dicPathContainers;
     }
     
-    
     if ([@"/" isEqualToString:path]) {
         return [self.arrSectionItems mutableCopy];
     } else if ([self.dicPathContainers objectForKey:path] != nil) {
@@ -238,19 +236,6 @@
         SectionItem *sectionItem = array[0];
         [dictionary setObject:[NSArray arrayWithArray:array] forKey:sectionItem.path];
     }
-}
-
-
-#pragma mark - Utility (Will return sorted:ASC array based on text displayed)
-- (NSArray *)convertNSSetToNSArray:(NSSet *)set sortBy:(NSString *)sortBy
-{
-    NSArray *array = [[NSArray alloc] init];
-    if (set != nil && set.count > 0) {
-        NSArray *arrDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:sortBy ascending:YES]];
-        array = [[set allObjects] sortedArrayUsingDescriptors:arrDescriptors];
-    }
-    
-    return array;
 }
 
 - (NSArray *)getNavPoints:(NSArray *)arrSource level:(int)level
