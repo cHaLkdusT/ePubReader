@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PageViewController : UIViewController
+@interface PageViewController : UIViewController <UIWebViewDelegate>
 @property (nonatomic) NSInteger tableViewCellRow;
 @property (nonatomic, strong) NSArray *arrSections;
 

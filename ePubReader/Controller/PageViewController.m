@@ -14,6 +14,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NSMutableArray *pageViews;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+@property long currentPageDisplayed;
 
 - (void)loadVisiblePages;
 - (void)loadPage:(NSInteger)page;
@@ -54,14 +55,14 @@
 {
     CGSize pagesScrollViewSize = _scrollView.frame.size;
     _scrollView.contentSize = CGSizeMake(pagesScrollViewSize.width * _arrSections.count, pagesScrollViewSize.height);
-    _scrollView.contentOffset = [self offsetForPageAtIndex:_tableViewCellRow];
+    _scrollView.contentOffset = [self offsetForPageAtIndex:_scrollView row:_tableViewCellRow];
     _scrollView.delegate = self;
 }
 
 - (void)loadVisiblePages {
     // First, determine which page is currently visible
-    CGFloat pageWidth = _scrollView.frame.size.width;
-    NSInteger page = (NSInteger)floor((_scrollView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
+    NSInteger page = [self getCurrentPage:_scrollView];
+    _currentPageDisplayed = page+1;
     
     // Update the page control
     _pageControl.currentPage = _tableViewCellRow;
@@ -115,6 +116,12 @@
         NSString *path = [NSString stringWithFormat:@"%@/UnzippedGeography_9/OEBPS/%@", [AppDelegate applicationDocumentsDirectory], [self fileToLoad:page]];
         UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
         webView.scalesPageToFit = YES;
+        webView.paginationBreakingMode = UIWebPaginationBreakingModePage;
+        webView.paginationMode = UIWebPaginationModeLeftToRight;
+        webView.scrollView.directionalLockEnabled = YES;
+        webView.scrollView.pagingEnabled = YES;
+        webView.tag = page+1;
+        webView.delegate = self;
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:path]]];
         [_scrollView addSubview:webView];
 
@@ -122,9 +129,9 @@
     }
 }
 
-- (CGPoint)offsetForPageAtIndex:(NSInteger)index {
+- (CGPoint)offsetForPageAtIndex:(UIScrollView *)scrollView row:(NSInteger)index {
     CGPoint offset;
-    offset.x = (_scrollView.frame.size.width * index);
+    offset.x = (scrollView.frame.size.width * index);
     offset.y = 0;
     return offset;
 }
@@ -143,8 +150,13 @@
     return file;
 }
 
+- (NSInteger)getCurrentPage:(UIScrollView *)scrollView
+{
+    CGFloat pageWidth = scrollView.frame.size.width;
+    return (NSInteger)floor((scrollView.contentOffset.x * 2.0f + pageWidth) / (pageWidth * 2.0f));
+}
 
-#pragma mark - UIScrollViewDelegate
+//#pragma mark - UIScrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self loadVisiblePages];
 }
@@ -152,12 +164,34 @@
 #pragma mark - IBActions
 
 - (IBAction)prevButton:(id)sender {
-    [self loadVisiblePages];
-    [_scrollView setContentOffset:[self offsetForPageAtIndex:_tableViewCellRow -= 1] animated:YES];
+    UIWebView *webView = (UIWebView *)[_scrollView viewWithTag:_currentPageDisplayed];
+    NSInteger page = [self getCurrentPage:webView.scrollView];
+    if (page > 0) {
+        [webView.scrollView setContentOffset:[self offsetForPageAtIndex:webView.scrollView row:page-1] animated:YES];
+    } else {
+        [_scrollView setContentOffset:[self offsetForPageAtIndex:_scrollView row:--_tableViewCellRow] animated:YES];
+    }
 }
 
 - (IBAction)nextButton:(id)sender {
-    [self loadVisiblePages];
-    [_scrollView setContentOffset:[self offsetForPageAtIndex:_tableViewCellRow += 1] animated:YES];
+    UIWebView *webView = (UIWebView *)[_scrollView viewWithTag:_currentPageDisplayed];
+    NSInteger page = [self getCurrentPage:webView.scrollView];
+    if (page < webView.pageCount-1) {
+        [webView.scrollView setContentOffset:[self offsetForPageAtIndex:webView.scrollView row:page+1] animated:YES];
+    } else {
+        [_scrollView setContentOffset:[self offsetForPageAtIndex:_scrollView row:++_tableViewCellRow] animated:YES];
+    }
+}
+
+#pragma mark - UIWebViewDelegate
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    Section *section = _arrSections[_currentPageDisplayed];
+    NSString *file;
+    
+    NSRange range = [section.src rangeOfString:@"#"];
+    file = [section.src substringFromIndex:range.location];
+    [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"window.location.href = '%@'", file]];
+    
 }
 @end
